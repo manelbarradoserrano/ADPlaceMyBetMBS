@@ -27,6 +27,9 @@ namespace ADPlaceMyBetMBS.Controllers
         // POST: api/Apuestas
         public void Post([FromBody] Apuestas apuesta)
         {
+            var repository = new ApuestasRepository();
+            repository.Save(apuesta);
+
         }
 
         // PUT: api/Apuestas/5

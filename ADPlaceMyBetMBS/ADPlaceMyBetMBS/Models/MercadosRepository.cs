@@ -31,11 +31,36 @@ namespace ADPlaceMyBetMBS.Models
                 List<Mercados> mercado = new List<Mercados>();
                 while (reader.Read())
                 {
-                    Mercados m1 = new Mercados(reader.GetDouble(0), reader.GetDouble(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetInt32(5));
+                    Mercados m1 = new Mercados(reader.GetString(0),reader.GetDouble(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetInt32(6));
                     mercado.Add(m1);
                 }
                 con.Close();
                 return mercado;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("No se ha podido conectar a la base de datos.");
+                return null;
+            }
+        }
+
+        internal List<MercadosDTO> retrieveDTO()
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand com = con.CreateCommand();
+            com.CommandText = "Select * from mercados";
+            try
+            {
+                con.Open();
+                MySqlDataReader reader = com.ExecuteReader();
+                List<MercadosDTO> mercadoDTO = new List<MercadosDTO>();
+                while (reader.Read())
+                {
+                    MercadosDTO m1 = new MercadosDTO(reader.GetDouble(0), reader.GetDouble(1), reader.GetDouble(2));
+                    mercadoDTO.Add(m1);
+                }
+                con.Close();
+                return mercadoDTO;
             }
             catch (Exception)
             {

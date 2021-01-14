@@ -42,5 +42,30 @@ namespace ADPlaceMyBetMBS.Models
                 return null;
             }
         }
+
+        internal List<EventosDTO> retrieveDTO()
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand com = con.CreateCommand();
+            com.CommandText = "Select * from eventos";
+            try
+            {
+                con.Open();
+                MySqlDataReader reader = com.ExecuteReader();
+                List<EventosDTO> eventoDTO = new List<EventosDTO>();
+                while (reader.Read())
+                {
+                    EventosDTO e1 = new EventosDTO(reader.GetString(0), reader.GetString(1), reader.GetString(2));
+                    eventoDTO.Add(e1);
+                }
+                con.Close();
+                return eventoDTO;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("No se ha podido conectar a la base de datos.");
+                return null;
+            }
+        }
     }
 }

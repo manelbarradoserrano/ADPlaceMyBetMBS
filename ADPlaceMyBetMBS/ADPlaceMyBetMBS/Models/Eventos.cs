@@ -24,4 +24,19 @@ namespace ADPlaceMyBetMBS.Models
         public string eqVisitante { get; set; }
         public string fechaApuesta { get; set; }
     }
+
+    public class EventosDTO
+    {
+        public EventosDTO(string eqLocal, string eqVisitante, string fechaApuesta)
+        {
+
+            this.eqLocal = eqLocal;
+            this.eqVisitante = eqVisitante;
+            this.fechaApuesta = fechaApuesta;
+        }
+
+        public string eqLocal { get; set; }
+        public string eqVisitante { get; set; }
+        public string fechaApuesta { get; set; }
+    }
 }

@@ -11,9 +11,10 @@ namespace ADPlaceMyBetMBS.Models
 {
     public class Mercados
     {
-        public Mercados(double overUnder, double cuotaOver, double cuotaUnder, double dineroOver, double dineroUnder, int idEvento)
+        public Mercados(string overUnder, double tipoMercado, double cuotaOver, double cuotaUnder, double dineroOver, double dineroUnder, int idEvento)
         {
             this.overUnder = overUnder;
+            this.tipoMercado = tipoMercado;
             this.cuotaOver = cuotaOver;
             this.cuotaUnder = cuotaUnder;
             this.dineroOver = dineroOver;
@@ -21,12 +22,27 @@ namespace ADPlaceMyBetMBS.Models
             this.idEvento = idEvento;
         }
 
-        public double overUnder { get; set; }
+        public string overUnder { get; set; }
+        public double tipoMercado { get; set; }
         public double cuotaOver { get; set; }
         public double cuotaUnder { get; set; }
         public double dineroOver { get; set; }
         public double dineroUnder { get; set; }
         public int idEvento { get; set; }
 
+    }
+
+    public class MercadosDTO
+    {
+        public MercadosDTO(double tipoMercado, double cuotaOver, double cuotaUnder)
+        {
+            this.tipoMercado = tipoMercado;
+            this.cuotaOver = cuotaOver;
+            this.cuotaUnder = cuotaUnder;
+        }
+
+        public double tipoMercado { get; set; }
+        public double cuotaOver { get; set; }
+        public double cuotaUnder { get; set; }
     }
 }
