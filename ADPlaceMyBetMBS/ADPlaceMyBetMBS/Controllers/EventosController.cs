@@ -18,13 +18,15 @@ namespace ADPlaceMyBetMBS.Controllers
             }
 
             // GET: api/Eventos/5
-            public string Get(int id)
+            public IEnumerable<Mercados> GetByEvento(int idEvento, double tipoMercado)
             {
-                return "value";
+                 var repo = new EventosRepository();
+                List<Mercados> mercados = repo.retrieveByEvento(idEvento, tipoMercado);
+                return mercados;
             }
 
-            // POST: api/Eventos
-            public void Post([FromBody] string value)
+        // POST: api/Eventos
+        public void Post([FromBody] string value)
             {
             }
 

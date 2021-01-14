@@ -23,4 +23,25 @@ namespace ADPlaceMyBetMBS.Models
             public string apellidos { get; set; }
             public int edad { get; set; }
         }
+
+    public class ApuestasUsuario
+    {
+        public ApuestasUsuario(string usuario, double tipoMercado, int idEvento, string tipoApuesta, double cuota, double dineroApostado)
+        {
+            this.usuario = usuario;
+            this.tipoMercado = tipoMercado;
+            this.idEvento = idEvento;
+            this.tipoApuesta = tipoApuesta;
+            this.cuota = cuota;
+            this.dineroApostado = dineroApostado;
+
+        }
+
+        public string usuario { get; set; }
+        public double tipoMercado { get; set; }
+        public int idEvento { get; set; }
+        public string tipoApuesta { get; set; }
+        public double cuota { get; set; }
+        public double dineroApostado { get; set; }
+    }
 }

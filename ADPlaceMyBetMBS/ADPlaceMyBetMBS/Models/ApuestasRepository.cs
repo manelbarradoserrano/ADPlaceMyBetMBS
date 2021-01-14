@@ -31,7 +31,7 @@ namespace ADPlaceMyBetMBS.Models
                 List<Apuestas> apuesta = new List<Apuestas>();
                 while (reader.Read())
                 {
-                    Apuestas a1 = new Apuestas(reader.GetInt32(0), reader.GetInt32(1), reader.GetDouble(2), reader.GetString(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetMySqlDateTime(6).ToString(), reader.GetString(7));
+                    Apuestas a1 = new Apuestas(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2), reader.GetDouble(3),  reader.GetDouble(4), reader.GetDouble(5), reader.GetMySqlDateTime(6).ToString(), reader.GetString(7));
                     apuesta.Add(a1);
                 }
                 con.Close();
@@ -56,7 +56,7 @@ namespace ADPlaceMyBetMBS.Models
                 List<ApuestasDTO> apuestaDTO = new List<ApuestasDTO>();
                 while (reader.Read())
                 {
-                    ApuestasDTO a1 = new ApuestasDTO(reader.GetString(0), reader.GetDouble(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetMySqlDateTime(4).ToString(), reader.GetString(5));
+                    ApuestasDTO a1 = new ApuestasDTO(reader.GetString(3), reader.GetDouble(2), reader.GetDouble(4), reader.GetDouble(5), reader.GetMySqlDateTime(6).ToString(), reader.GetString(7));
                     apuestaDTO.Add(a1);
                 }
                 con.Close();
@@ -83,7 +83,6 @@ namespace ADPlaceMyBetMBS.Models
             MySqlConnection con = Connect();
             MySqlCommand com = con.CreateCommand();
             MySqlCommand comandocuotas = con.CreateCommand();
-            MySqlCommand comandocambiarcuota = con.CreateCommand();
             MySqlCommand cambiardinero = con.CreateCommand();
 
             DateTime dt = DateTime.Now;
@@ -107,7 +106,7 @@ namespace ADPlaceMyBetMBS.Models
                 calccover = Math.Round(calccover, 2);
 
                 com.CommandText = "INSERT INTO `apuestas` VALUES ('" + a.idMercado + "','" + a.idEvento + "','" + a.tipoMercado + "','" + a.tipoApuesta + "','" + cuota + "','" + a.dineroApostado + "','" + fecha + "','" + a.usuario + "');'";
-                cambiardinero.CommandText = "UPDATE mercados SET dineroOver = dineroOver +" + a.dineroApostado + " WHERE idMercado =" + a.idMercado + ";";
+                cambiardinero.CommandText = "UPDATE mercados SET dineroOver = dineroOver +" + a.dineroApostado + "WHERE idMercado =" + a.idMercado + ";";
                 comandocuotas.CommandText = "UPDATE `mercados` SET `cuotaOver`=" + calccover + "WHERE idMercado =" + a.idMercado + ";";
             }
             else
@@ -226,6 +225,6 @@ namespace ADPlaceMyBetMBS.Models
             return cuota;
         }
 
-        
+
     }
 }

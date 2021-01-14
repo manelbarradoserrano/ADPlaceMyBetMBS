@@ -67,5 +67,35 @@ namespace ADPlaceMyBetMBS.Models
                 return null;
             }
         }
+
+        internal List<Mercados> retrieveByEvento(int idEvento, double tipoMercado)
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand com = con.CreateCommand();
+            com.CommandText = "Select * from mercados where idEvento = @A and tipoMercado = @A2";
+            com.Parameters.AddWithValue("@A", idEvento);
+            com.Parameters.AddWithValue("@A2", tipoMercado);
+
+            try
+            {
+                con.Open();
+                MySqlDataReader reader = com.ExecuteReader();
+
+                List<Mercados> mercado = new List<Mercados>();
+                while (reader.Read())
+                {
+
+                    Mercados m1 = new Mercados(reader.GetInt32(0), reader.GetInt32(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetDouble(6));
+                    mercado.Add(m1);
+                }
+                con.Close();
+                return mercado;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("No se ha podido conectar a la base de datos.");
+                return null;
+            }
+        }
     }
 }

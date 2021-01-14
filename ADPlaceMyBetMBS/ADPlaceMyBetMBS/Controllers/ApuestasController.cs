@@ -18,7 +18,7 @@ namespace ADPlaceMyBetMBS.Controllers
             return apuestas;
         }
 
-        // GET: api/Apuestas/5
+        // GET api/Apuestas/5
         public string Get(int id)
         {
             return "value";

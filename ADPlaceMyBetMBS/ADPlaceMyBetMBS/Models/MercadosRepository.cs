@@ -31,7 +31,7 @@ namespace ADPlaceMyBetMBS.Models
                 List<Mercados> mercado = new List<Mercados>();
                 while (reader.Read())
                 {
-                    Mercados m1 = new Mercados(reader.GetString(0),reader.GetDouble(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetInt32(6));
+                    Mercados m1 = new Mercados(reader.GetInt32(0),reader.GetInt32(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetDouble(6));
                     mercado.Add(m1);
                 }
                 con.Close();
@@ -67,6 +67,38 @@ namespace ADPlaceMyBetMBS.Models
                 Debug.WriteLine("No se ha podido conectar a la base de datos.");
                 return null;
             }
+        }
+
+        internal List<MercadosUsuario> retrieveByUsuario(string usuario, double tipoMercado)
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand com = con.CreateCommand();
+            com.CommandText = "Select * from apuestas where usuario = @A and idMercado = @A2";
+            com.Parameters.AddWithValue("@A", usuario);
+            com.Parameters.AddWithValue("@A2", tipoMercado);
+
+            try
+            {
+                con.Open();
+                MySqlDataReader reader = com.ExecuteReader();
+
+                List<MercadosUsuario> mercado = new List<MercadosUsuario>();
+                while (reader.Read())
+                {
+
+                    MercadosUsuario m1 = new MercadosUsuario(reader.GetDouble(2), reader.GetString(3), reader.GetDouble(4), reader.GetDouble(5));
+                    mercado.Add(m1);
+                }
+                con.Close();
+                return mercado;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("No se ha podido conectar a la base de datos.");
+                return null;
+            }
+
+            
         }
     }
 }

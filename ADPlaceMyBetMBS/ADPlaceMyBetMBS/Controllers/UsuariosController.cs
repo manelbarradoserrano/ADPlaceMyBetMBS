@@ -18,14 +18,16 @@ namespace ADPlaceMyBetMBS.Controllers
                 return usuarios;
             }
 
-            // GET: api/Usuarios/5
-            public string Get(int id)
-            {
-                return "value";
-            }
+        // GET: api/Usuarios?usuario=valor1&tipoMercado=valor2
+        public IEnumerable<ApuestasUsuario> GetByUsuario(string usuario, double tipoMercado)
+        {
+            var repo = new UsuariosRepository();
+            List<ApuestasUsuario> apuestasU = repo.retrieveByUsuario(usuario, tipoMercado);
+            return apuestasU;
+        }
 
-            // POST: api/Usuarios
-            public void Post([FromBody] string value)
+        // POST: api/Usuarios
+        public void Post([FromBody] string value)
             {
             }
 
