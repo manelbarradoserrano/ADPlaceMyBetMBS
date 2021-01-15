@@ -56,7 +56,8 @@ namespace ADPlaceMyBetMBS.Models
         public double dineroApostado { get; set; }
         public string fechaApuesta { get; set; }
         public string usuario { get; set; }
-    }
+        }
 
-   
+    
+
 }

@@ -19,13 +19,15 @@ namespace ADPlaceMyBetMBS.Controllers
         }
 
         // GET api/Apuestas/5
-        public string Get(int id)
+        public IEnumerable<Apuestas> GetByCuota(double cuota, double cuotaMax)
         {
-            return "value";
+            var repo = new ApuestasRepository();
+            List<Apuestas> apuestas = repo.retrieveByCuota(cuota, cuotaMax);
+            return apuestas;
         }
 
         // POST: api/Apuestas
-        [Authorize(Roles = "Standard")]
+        //[Authorize(Roles = "Standard")]
         public void Post([FromBody] Apuestas apuesta)
         {
             var repository = new ApuestasRepository();
