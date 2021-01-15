@@ -17,7 +17,7 @@ namespace ADPlaceMyBetMBS.Controllers
                 return eventos;
             }
 
-            // GET: api/Eventos/5
+            // GET: api/Eventos?idEvento=valor1&tipoMercado=valor2
             public IEnumerable<Mercados> GetByEvento(int idEvento, double tipoMercado)
             {
                  var repo = new EventosRepository();

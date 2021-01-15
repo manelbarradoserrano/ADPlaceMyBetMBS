@@ -18,8 +18,8 @@ namespace ADPlaceMyBetMBS.Controllers
                 return usuarios;
             }
 
-        // GET: api/Usuarios?usuario=valor1&tipoMercado=valor2
-        [Authorize(Roles = "Admin")]
+        //GET: api/Usuarios?usuario=valor1&tipoMercado=valor2
+         [Authorize(Roles = "Admin")]
         public IEnumerable<ApuestasUsuario> GetByUsuario(string usuario, double tipoMercado)
         {
             var repo = new UsuariosRepository();

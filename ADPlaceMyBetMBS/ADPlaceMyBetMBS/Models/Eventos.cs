@@ -11,7 +11,7 @@ namespace ADPlaceMyBetMBS.Models
 {
     public class Eventos
     {
-        public Eventos(int idApuesta, string eqLocal, string eqVisitante, string fechaApuesta)
+        public Eventos(int idApuesta, string eqLocal, string eqVisitante, DateTime fechaApuesta)
         {
             this.idApuesta = idApuesta;
             this.eqLocal = eqLocal;
@@ -22,7 +22,7 @@ namespace ADPlaceMyBetMBS.Models
         public int idApuesta { get; set; }
         public string eqLocal { get; set; }
         public string eqVisitante { get; set; }
-        public string fechaApuesta { get; set; }
+        public DateTime fechaApuesta { get; set; }
     }
 
     public class EventosDTO

@@ -30,7 +30,7 @@ namespace ADPlaceMyBetMBS.Models
                 List<Eventos> evento = new List<Eventos>();
                 while (reader.Read())
                 {
-                    Eventos e1 = new Eventos(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    Eventos e1 = new Eventos(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3));
                     evento.Add(e1);
                 }
                 con.Close();

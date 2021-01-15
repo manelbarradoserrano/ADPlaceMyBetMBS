@@ -25,7 +25,7 @@ namespace ADPlaceMyBetMBS.Controllers
         }
 
         // POST: api/Apuestas
-        [Authorize]
+        [Authorize(Roles = "Standard")]
         public void Post([FromBody] Apuestas apuesta)
         {
             var repository = new ApuestasRepository();

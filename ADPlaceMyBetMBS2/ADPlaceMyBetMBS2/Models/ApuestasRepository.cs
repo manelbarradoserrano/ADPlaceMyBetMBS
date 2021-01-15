@@ -31,15 +31,15 @@ namespace ADPlaceMyBetMBS.Models
                 List<Apuestas> apuesta = new List<Apuestas>();
                 while (reader.Read())
                 {
-                    Apuestas a1 = new Apuestas(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2), reader.GetDouble(3),  reader.GetDouble(4), reader.GetDouble(5), reader.GetMySqlDateTime(6).ToString(), reader.GetString(7));
+                    Apuestas a1 = new Apuestas(reader.GetInt32(0), reader.GetInt32(1), reader.GetDouble(2), reader.GetString(3),  reader.GetDouble(4), reader.GetDouble(5), reader.GetDateTime(6), reader.GetString(7));
                     apuesta.Add(a1);
                 }
                 con.Close();
                 return apuesta;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Debug.WriteLine("No se ha podido conectar a la base de datos.");
+                Debug.WriteLine(e);
                 return null;
             }
         }

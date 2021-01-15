@@ -11,7 +11,7 @@ namespace ADPlaceMyBetMBS.Models
 {
     public class Apuestas
     {
-            public Apuestas(int idMercado, int idEvento, string tipoApuesta, double tipoMercado, double cuota, double dineroApostado, string fechaApuesta, string usuario)
+            public Apuestas(int idMercado, int idEvento, double tipoMercado, string tipoApuesta, double cuota, double dineroApostado, DateTime fechaApuesta, string usuario)
             {
                 this.idMercado = idMercado;
                 this.idEvento = idEvento;
@@ -32,7 +32,7 @@ namespace ADPlaceMyBetMBS.Models
             public double tipoMercado { get; set; }
             public double cuota { get; set; }
             public double dineroApostado { get; set; }
-            public string fechaApuesta { get; set; }
+            public DateTime fechaApuesta { get; set; }
             public string usuario { get; set; }
         }
 
