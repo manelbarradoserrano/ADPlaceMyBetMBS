@@ -257,7 +257,36 @@ namespace ADPlaceMyBetMBS.Models
             }
         }
 
+        //Examen Ej2 Retrieve Apuestas by Mercado
+        internal List<Apuestas> retrieveByMercado(int idMercado, double dineroApostado)
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand com = con.CreateCommand();
+            com.CommandText = "Select * from apuestas where idMercado= @A and dineroApostado >= @A2";
+            com.Parameters.AddWithValue("@A", idMercado);
+            com.Parameters.AddWithValue("@A2", dineroApostado);
 
+            try
+            {
+                con.Open();
+                MySqlDataReader reader = com.ExecuteReader();
+
+                List<Apuestas> apuestasM = new List<Apuestas>();
+                while (reader.Read())
+                {
+
+                    Apuestas aC1 = new Apuestas(reader.GetInt32(0), reader.GetInt32(1), reader.GetDouble(2), reader.GetString(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetDateTime(6), reader.GetString(7));
+                    apuestasM.Add(aC1);
+                }
+                con.Close();
+                return apuestasM;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("No se ha podido conectar a la base de datos.");
+                return null;
+            }
+        }
 
     }
 }

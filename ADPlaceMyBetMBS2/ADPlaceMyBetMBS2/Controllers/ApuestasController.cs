@@ -18,11 +18,21 @@ namespace ADPlaceMyBetMBS.Controllers
             return apuestas;
         }
 
-        // GET api/Apuestas/5
+        //Ej1 Examen Tema1 Retrieve by Id Cuota
+        // GET api/Apuestas?cuota={valor1}&cuotaMax={valor1}
         public IEnumerable<Apuestas> GetByCuota(double cuota, double cuotaMax)
         {
             var repo = new ApuestasRepository();
             List<Apuestas> apuestas = repo.retrieveByCuota(cuota, cuotaMax);
+            return apuestas;
+        }
+
+        //Ej2 Examen Tema1 Retrieve by Id Mercado
+        // GET api/Apuestas?idMercado={valor1}&dineroApostado>={valor1}
+        public IEnumerable<Apuestas> GetByMercado(int idMercado, double dineroApostado)
+        {
+            var repo = new ApuestasRepository();
+            List<Apuestas> apuestas = repo.retrieveByMercado(idMercado, dineroApostado);
             return apuestas;
         }
 
